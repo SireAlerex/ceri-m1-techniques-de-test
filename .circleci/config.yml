@@ -1,9 +1,23 @@
 version: 2.1
-jobs:
-  build:
+
+executors:
+  java21:
     docker:
       - image: cimg/openjdk:21.0.2
+
+jobs:
+  build:
+    executor: java21
     steps:
       - checkout
       - run: mvn clean install
       - run: mvn test
+
+workflows:
+  build_and_test:
+    jobs:
+      - build:
+        filters:
+          branches:
+            only:
+              - master
