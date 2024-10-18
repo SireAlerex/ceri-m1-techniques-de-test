@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static fr.univavignon.pokedex.api.IPokemonMetadataProviderTest.bulbizarreMetadata;
-import static fr.univavignon.pokedex.api.IPokemonMetadataProviderTest.evoliMetadata;
+import static fr.univavignon.pokedex.api.IPokemonMetadataProviderTest.aqualiMetadata;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -16,18 +16,18 @@ public class IPokemonFactoryTest {
 			bulbizarreMetadata.getDefense(), bulbizarreMetadata.getStamina(), bulbizarreData.cp, bulbizarreData.hp,
 			bulbizarreData.dust, bulbizarreData.candy, 0.56);
 
-	static PokemonData evoliData = new PokemonData(evoliMetadata,
+	static PokemonData aqualiData = new PokemonData(aqualiMetadata,
 			2729, 202, 5000, 4);
-	static Pokemon evoli = new Pokemon(evoliMetadata.getIndex(), evoliMetadata.getName(), evoliMetadata.getAttack(),
-				evoliMetadata.getDefense(), evoliMetadata.getStamina(), evoliData.cp, evoliData.hp,
-				evoliData.dust, evoliData.candy, 1.0);
+	static Pokemon aquali = new Pokemon(aqualiMetadata.getIndex(), aqualiMetadata.getName(), aqualiMetadata.getAttack(),
+				aqualiMetadata.getDefense(), aqualiMetadata.getStamina(), aqualiData.cp, aqualiData.hp,
+				aqualiData.dust, aqualiData.candy, 1.0);
 
 	@BeforeAll
 	static void setPokemonFactory() {
 		pokemonFactory = mock(IPokemonFactory.class);
 
 		when(pokemonFactory.createPokemon(eq(bulbizarre.getIndex()), anyInt(), anyInt(), anyInt(), anyInt())).thenReturn(bulbizarre);
-		when(pokemonFactory.createPokemon(eq(evoli.getIndex()), anyInt(), anyInt(), anyInt(), anyInt())).thenReturn(evoli);
+		when(pokemonFactory.createPokemon(eq(aquali.getIndex()), anyInt(), anyInt(), anyInt(), anyInt())).thenReturn(aquali);
 	}
 
 	@Test
@@ -37,9 +37,9 @@ public class IPokemonFactoryTest {
 	}
 
 	@Test
-	void evoliFactory() {
-		Pokemon evoliTest = pokemonFactory.createPokemon(evoliData.pokemonMetadata.getIndex(), evoliData.cp, evoliData.hp, evoliData.dust, evoliData.candy);
-		assertEquals(evoliTest, evoli);
+	void aqualiFactory() {
+		Pokemon aqualiTest = pokemonFactory.createPokemon(aqualiData.pokemonMetadata.getIndex(), aqualiData.cp, aqualiData.hp, aqualiData.dust, aqualiData.candy);
+		assertEquals(aqualiTest, aquali);
 	}
 
 	static class PokemonData {
