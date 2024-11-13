@@ -84,9 +84,6 @@ public final class Pokemon extends PokemonMetadata {
 		if (this == other) return true; // same pointer
 
 		return this.getIndex() == other.getIndex() &&
-               this.getAttack() == other.getAttack() &&
-               this.getDefense() == other.getDefense() &&
-               this.getStamina() == other.getStamina() &&
                this.cp == other.cp &&
                this.hp == other.hp &&
                this.dust == other.dust &&
