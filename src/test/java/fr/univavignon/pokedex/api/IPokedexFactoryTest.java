@@ -11,9 +11,10 @@ public class IPokedexFactoryTest {
 
 	@BeforeAll
 	static void setPokedexFactory() {
-		pokedexFactory = mock(IPokedexFactory.class);
+		// pokedexFactory = mock(IPokedexFactory.class);
 
-		when(pokedexFactory.createPokedex(any(), any())).thenReturn(mock(IPokedex.class));
+		// when(pokedexFactory.createPokedex(any(), any())).thenReturn(mock(IPokedex.class));
+		pokedexFactory = new PokedexFactory();
 	}
 
 	@Test

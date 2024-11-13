@@ -11,9 +11,11 @@ public class IPokemonTrainerFactoryTest {
 
 	@BeforeAll
 	static void setPokemonTrainerFactory() {
-		pokemonTrainerFactory = mock(IPokemonTrainerFactory.class);
+		// pokemonTrainerFactory = mock(IPokemonTrainerFactory.class);
 
-		when(pokemonTrainerFactory.createTrainer(anyString(), any(), any())).thenReturn(mock(PokemonTrainer.class));
+		// when(pokemonTrainerFactory.createTrainer(anyString(), any(), any())).thenReturn(mock(PokemonTrainer.class));
+	
+		pokemonTrainerFactory = new PokemonTrainerFactory();
 	}
 
 	@Test

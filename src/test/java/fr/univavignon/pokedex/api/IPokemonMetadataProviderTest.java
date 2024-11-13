@@ -2,6 +2,7 @@ package fr.univavignon.pokedex.api;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.ToStringBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -15,17 +16,18 @@ public class IPokemonMetadataProviderTest {
 
 	@BeforeAll
 	static void setupPokemonMetadataProvider() throws PokedexException {
-		pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
-		when(pokemonMetadataProvider.getPokemonMetadata(anyInt())).thenAnswer( input -> {
-				int index = input.getArgument(0);
-				if (index == 0) return bulbizarreMetadata;
-				else if (index == 133) return aqualiMetadata;
-				else if (index < 0 || index > 150) {
-					throw new PokedexException("Invalid index");
-				} else {
-					return mock(PokemonMetadata.class);
-				}
-		});
+		// pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
+		// when(pokemonMetadataProvider.getPokemonMetadata(anyInt())).thenAnswer( input -> {
+		// 		int index = input.getArgument(0);
+		// 		if (index == 0) return bulbizarreMetadata;
+		// 		else if (index == 133) return aqualiMetadata;
+		// 		else if (index < 0 || index > 150) {
+		// 			throw new PokedexException("Invalid index");
+		// 		} else {
+		// 			return mock(PokemonMetadata.class);
+		// 		}
+		// });
+		pokemonMetadataProvider = new PokemonMetadataProvider();
 	}
 
 	@Test
@@ -36,11 +38,11 @@ public class IPokemonMetadataProviderTest {
 
 	@Test
 	void testBulbizarre() throws PokedexException {
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(0), bulbizarreMetadata);
+		assert(pokemonMetadataProvider.getPokemonMetadata(0).equalsMetadata(bulbizarreMetadata));
 	}
 
 	@Test
 	void testAquali() throws PokedexException {
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(133), aqualiMetadata);
+		assert(pokemonMetadataProvider.getPokemonMetadata(133).equalsMetadata(aqualiMetadata));
 	}
 }

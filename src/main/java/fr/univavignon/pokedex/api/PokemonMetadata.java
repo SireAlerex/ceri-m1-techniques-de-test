@@ -1,5 +1,7 @@
 package fr.univavignon.pokedex.api;
 
+import java.lang.reflect.Field;
+
 /**
  * Pokemon metadata POJO.
  * 
@@ -64,4 +66,11 @@ public class PokemonMetadata {
 		return stamina;
 	}
 
+	public boolean equalsMetadata(PokemonMetadata other) {
+		return this.index == other.index &&
+			   this.attack == other.attack &&
+			   this.defense == other.defense &&
+			   this.stamina== other.stamina &&
+			   this.name == other.name;
+	}
 }

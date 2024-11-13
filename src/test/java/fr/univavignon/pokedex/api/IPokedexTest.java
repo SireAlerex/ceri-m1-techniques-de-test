@@ -17,29 +17,31 @@ public class IPokedexTest {
 
 	@BeforeAll
 	static void setIPokedexTest() throws PokedexException {
-		pokedex = mock(IPokedex.class);
+		// pokedex = mock(IPokedex.class);
 
-		when(pokedex.size()).thenReturn(0).thenReturn(1);
+		// when(pokedex.size()).thenReturn(0).thenReturn(1);
 
-		when(pokedex.getPokemon(eq(-1))).thenThrow(PokedexException.class);
-		when(pokedex.getPokemon(eq(151))).thenThrow(PokedexException.class);
+		// when(pokedex.getPokemon(eq(-1))).thenThrow(PokedexException.class);
+		// when(pokedex.getPokemon(eq(151))).thenThrow(PokedexException.class);
 
-		when(pokedex.addPokemon(bulbizarre)).thenReturn(bulbizarre.getIndex());
-		when(pokedex.getPokemon(bulbizarre.getIndex())).thenReturn(bulbizarre);
+		// when(pokedex.addPokemon(bulbizarre)).thenReturn(bulbizarre.getIndex());
+		// when(pokedex.getPokemon(bulbizarre.getIndex())).thenReturn(bulbizarre);
 
-		when(pokedex.addPokemon(aquali)).thenReturn(aquali.getIndex());
-		when(pokedex.getPokemon(aquali.getIndex())).thenReturn(aquali);
+		// when(pokedex.addPokemon(aquali)).thenReturn(aquali.getIndex());
+		// when(pokedex.getPokemon(aquali.getIndex())).thenReturn(aquali);
 
-		when(pokedex.getPokemons()).thenReturn(new ArrayList<>(List.of(bulbizarre, aquali)));
-		when(pokedex.getPokemons(PokemonComparators.INDEX)).thenReturn(new ArrayList<>(List.of(bulbizarre, aquali)));
-		when(pokedex.getPokemons(PokemonComparators.NAME)).thenReturn(new ArrayList<>(List.of(aquali, bulbizarre)));
-		when(pokedex.getPokemons(PokemonComparators.CP)).thenReturn(new ArrayList<>(List.of(aquali, bulbizarre)));
+		// when(pokedex.getPokemons()).thenReturn(new ArrayList<>(List.of(bulbizarre, aquali)));
+		// when(pokedex.getPokemons(PokemonComparators.INDEX)).thenReturn(new ArrayList<>(List.of(bulbizarre, aquali)));
+		// when(pokedex.getPokemons(PokemonComparators.NAME)).thenReturn(new ArrayList<>(List.of(aquali, bulbizarre)));
+		// when(pokedex.getPokemons(PokemonComparators.CP)).thenReturn(new ArrayList<>(List.of(aquali, bulbizarre)));
+	
+		pokedex = new Pokedex(new PokemonMetadataProvider(), new PokemonFactory());
 	}
 
 	@Test
 	void sizeIncreaseAfterAddTest() {
 		assertEquals(pokedex.size(), 0);
-		pokedex.addPokemon(mock(Pokemon.class));
+		pokedex.addPokemon(bulbizarre);
 		assertEquals(pokedex.size(), 1);
 	}
 
@@ -83,7 +85,7 @@ public class IPokedexTest {
 		List<Pokemon> listIndex = new ArrayList<>(List.of(bulbizarre, aquali));
 		assertEquals(pokedex.getPokemons(PokemonComparators.INDEX), listIndex);
 
-		List<Pokemon> listCP = new ArrayList<>(List.of(aquali, bulbizarre));
+		List<Pokemon> listCP = new ArrayList<>(List.of(bulbizarre, aquali));
 		assertEquals(pokedex.getPokemons(PokemonComparators.CP), listCP);
 	}
 }
