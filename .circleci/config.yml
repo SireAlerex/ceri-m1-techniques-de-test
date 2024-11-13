@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  codecov: codecov/codevoc@3
+  codecov: codecov/codecov@5.0.3
 
 executors:
   java21:
