@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  codecov: codecov/codevoc@3
 
 executors:
   java21:
@@ -12,6 +14,7 @@ jobs:
       - checkout
       - run: mvn clean install
       - run: mvn test
+      - codecov/upload
 
 workflows:
   build_and_test:
