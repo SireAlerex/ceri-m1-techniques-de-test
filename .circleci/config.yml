@@ -20,21 +20,20 @@ jobs:
     steps:
       - checkout
       - run: mvn checkstyle:check
-      - run: ls target/
+      - run: sh badge-script.sh
+      - run: ls
       - store_artifacts:
           path: target/checkstyle-result.xml
 
 workflows:
   build_and_test:
     jobs:
-      - build:
+      - check:
         filters:
           branches:
             only:
               - master
-  checkstyle:
-    jobs:
-      - check:
+      - build:
         filters:
           branches:
             only:
