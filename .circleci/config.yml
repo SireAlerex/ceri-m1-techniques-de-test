@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@5.0.3
-  gcp-cli: circleci/gcp-cli@3.2.2
 
 executors:
   java21:
@@ -9,11 +8,6 @@ executors:
       - image: cimg/openjdk:21.0.2
 
 jobs:
-  use-gcp:
-    executor: gcp-cli/default
-    steps:
-      - gcp-cli/setup:
-          version: 404.0.0
   build:
     executor: java21
     steps:
@@ -27,20 +21,15 @@ jobs:
       - checkout
       - run: mvn checkstyle:check
       - run: sh badge-script.sh
-      - run: gsutil --version
       - store_artifacts:
           path: target/checkstyle-result.xml
       - store_artifacts:
           path: checkstyle-badge.svg
+      - run: curl -X PUT -F "file=@checkstyle-badge.svg" "https://storage.googleapis.com/alerex-techniques-de-test/checkstyle-badge.svg"
 
 workflows:
   build_and_test:
     jobs:
-      - use-gcp:
-        filters:
-          branches:
-            only:
-              - master
       - check:
         filters:
           branches:
