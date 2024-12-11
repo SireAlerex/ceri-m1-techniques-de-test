@@ -26,7 +26,7 @@ jobs:
       - store_artifacts:
           path: checkstyle-badge.svg
       - run: curl -X PUT --data-binary @checkstyle-badge.svg "https://storage.googleapis.com/alerex-techniques-de-test/checkstyle-badge.svg"
-      - run: cat "bla" | README.md
+      - run: cat "bla" > README.md
 
 workflows:
   build_and_test:
