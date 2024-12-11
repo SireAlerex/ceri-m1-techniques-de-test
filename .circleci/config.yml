@@ -15,11 +15,26 @@ jobs:
       - run: mvn clean install
       - run: mvn test
       - codecov/upload
+  check:
+    executor: java21
+    steps:
+      - checkout
+      - run: mvn checkstyle:check
+      - store_artifact:
+        path: target/site
+        destination: checkstyle-report
 
 workflows:
   build_and_test:
     jobs:
       - build:
+        filters:
+          branches:
+            only:
+              - master
+  checkstyle:
+    jobs:
+      - check:
         filters:
           branches:
             only:
