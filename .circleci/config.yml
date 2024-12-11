@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@5.0.3
+  gcp-cli: circleci/gcp-cli@3.2.2
 
 executors:
   java21:
@@ -21,7 +22,7 @@ jobs:
       - checkout
       - run: mvn checkstyle:check
       - run: sh badge-script.sh
-      - run: ls
+      - run: gsutil --version
       - store_artifacts:
           path: target/checkstyle-result.xml
       - store_artifacts:
