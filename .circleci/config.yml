@@ -25,7 +25,7 @@ jobs:
           path: target/checkstyle-result.xml
       - store_artifacts:
           path: checkstyle-badge.svg
-      - run: curl -X PUT -F "file=@checkstyle-badge.svg" "https://storage.googleapis.com/alerex-techniques-de-test/checkstyle-badge.svg"
+      - run: curl -X PUT --data-binary @checkstyle-badge.svg "https://storage.googleapis.com/alerex-techniques-de-test/checkstyle-badge.svg"
 
 workflows:
   build_and_test:
