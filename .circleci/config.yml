@@ -17,13 +17,12 @@ jobs:
       - codecov/upload
   check:
     executor: java21
-    working_directory: target/site
     steps:
       - checkout
       - run: mvn checkstyle:check
+      - run: ls target/
       - store_artifacts:
-          path: target/site
-          destination: checkstyle-report
+          path: target/checkstyle-result.xml
 
 workflows:
   build_and_test:
