@@ -9,6 +9,11 @@ executors:
       - image: cimg/openjdk:21.0.2
 
 jobs:
+  use-gcp:
+    executor: gcp-cli/default
+    steps:
+      - gcp-cli/setup:
+          version: 404.0.0
   build:
     executor: java21
     steps:
@@ -31,6 +36,11 @@ jobs:
 workflows:
   build_and_test:
     jobs:
+      - use-gcp:
+        filters:
+          branches:
+            only:
+              - master
       - check:
         filters:
           branches:
