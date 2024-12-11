@@ -24,6 +24,8 @@ jobs:
       - run: ls
       - store_artifacts:
           path: target/checkstyle-result.xml
+      - store_artifacts:
+          path: checkstyle-badge.svg
 
 workflows:
   build_and_test:
