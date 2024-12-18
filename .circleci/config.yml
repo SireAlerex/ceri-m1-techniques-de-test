@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run: mvn checkstyle:check
-      - run: sh badge-script.sh
+      - run: sh badge-script.sh target/checkstyle-result.xml
       - store_artifacts:
           path: target/checkstyle-result.xml
       - store_artifacts:
