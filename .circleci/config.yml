@@ -37,8 +37,8 @@ jobs:
       - run: ls target/reports/apidocs
       - run: pwd
       - persist_to_workspace:
-          root: target/reports
-          path: apidocs
+          root: target
+          path: reports
 
 workflows:
   build_and_test:
