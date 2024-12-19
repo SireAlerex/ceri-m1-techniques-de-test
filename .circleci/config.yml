@@ -31,13 +31,8 @@ jobs:
     steps:
       - checkout
       - run: mvn javadoc:javadoc
-      - run: ls
-      - run: ls target
-      - run: ls target/reports
-      - run: ls target/reports/apidocs
-      - run: pwd
-      - persist_to_workspace:
-          path: target
+      - store_artifacts:
+          path: target/reports
 
 workflows:
   build_and_test:
