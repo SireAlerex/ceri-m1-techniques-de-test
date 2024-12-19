@@ -39,7 +39,7 @@ jobs:
     steps:
       - checkout
       - run: mkdir temp && cd temp
-      - run: 'curl -s -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/SireAlerex/ceri-m1-techniques-de-test/latest/artifacts | grep -o -E "https://([^"]*)"   | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -'
+      - run: 'curl -s -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/SireAlerex/ceri-m1-techniques-de-test/latest/artifacts | grep -o -E "https://([^\"]*)"   | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -'
       - run: cd ../
       - run:
           name: Install and configure dependencies
