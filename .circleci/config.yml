@@ -69,3 +69,11 @@ workflows:
           branches:
             only:
               - master
+      - docs-deploy:
+          requires:
+            - check
+            - build
+            - docs-build
+          filters:
+            branches:
+              only: master
