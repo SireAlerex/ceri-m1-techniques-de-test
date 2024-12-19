@@ -31,6 +31,10 @@ jobs:
     steps:
       - checkout
       - run: mvn javadoc:javadoc
+      - run: ls
+      - run: ls target
+      - run: ls target/site
+      - run: ls target/site/apidocs
       - persist_to_workspace:
           root: target/site
           path: apidocs
