@@ -33,10 +33,10 @@ jobs:
       - run: mvn javadoc:javadoc
       - run: ls
       - run: ls target
-      - run: ls target/site
-      - run: ls target/site/apidocs
+      - run: ls target/report
+      - run: ls target/report/apidocs
       - persist_to_workspace:
-          root: target/site
+          root: target/report
           path: apidocs
 
 workflows:
