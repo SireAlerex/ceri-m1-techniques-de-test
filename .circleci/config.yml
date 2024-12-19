@@ -26,6 +26,14 @@ jobs:
       - store_artifacts:
           path: checkstyle-badge.svg
       - run: 'curl -X PUT -H "Content-Type:image/svg+xml" --data-binary @checkstyle-badge.svg "https://storage.googleapis.com/alerex-techniques-de-test/checkstyle-badge.svg"'
+  docs-build:
+    executor: java21
+    steps:
+      - checkout
+      - run: mvn javadoc:javadoc
+      - persist_to_workspace:
+          root: target/site
+          path: apidocs
 
 workflows:
   build_and_test:
@@ -36,6 +44,11 @@ workflows:
             only:
               - master
       - build:
+        filters:
+          branches:
+            only:
+              - master
+      - docs-build:
         filters:
           branches:
             only:
